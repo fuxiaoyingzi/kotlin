@@ -57,6 +57,7 @@ dependencies {
     implementation "org.jetbrains.anko:anko-support-v4-commons:$anko_version"
     // Anko Commons
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
+    implementation project(':BaseLibrary')
 }
 repositories {
     mavenCentral()
