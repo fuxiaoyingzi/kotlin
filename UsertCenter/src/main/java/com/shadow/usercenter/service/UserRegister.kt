@@ -9,5 +9,5 @@ import rx.Observable
  * Date :2018/6/3/003
  */
 interface UserRegister {
-    fun register(phoneNum: String, authCode: String): Observable<Boolean>
+    fun register(phoneNum: String,pwd:String, authCode: String): Observable<Boolean>
 }

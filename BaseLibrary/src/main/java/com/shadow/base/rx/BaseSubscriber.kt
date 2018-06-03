@@ -1,5 +1,6 @@
 package com.shadow.base.rx
 
+import android.util.Log
 import rx.Subscriber
 
 /**
@@ -12,8 +13,10 @@ open class BaseSubscriber<T> : Subscriber<T>() {
     }
 
     override fun onCompleted() {
+
     }
 
     override fun onError(e: Throwable?) {
+        Log.d("hh", e.toString())
     }
 }

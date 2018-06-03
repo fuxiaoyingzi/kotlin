@@ -9,6 +9,7 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/etPhoneNum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -21,11 +22,13 @@
     </LinearLayout>
 
     <EditText
+        android:id="@+id/etAuthCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="请输入验证码" />
 
     <EditText
+        android:id="@+id/etPwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="请输入密码" />

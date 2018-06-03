@@ -12,12 +12,9 @@ import com.shadow.usercenter.service.impl.UserRegisterImpl
  * Date :2018/6/3/003
  */
 class RegisterPresenter : BasePresenter<RegisterView>() {
-    fun register(phoneNum: String, authCode: String) {
+    fun register(phoneNum: String, pwd: String, authCode: String) {
         val userRegister = UserRegisterImpl()
-        /**
-         * 业务处理
-         */
-        userRegister.register(phoneNum, authCode).execute(object : BaseSubscriber<Boolean>() {
+        userRegister.register(phoneNum, pwd, authCode).execute(object : BaseSubscriber<Boolean>() {
             override fun onNext(t: Boolean) {
                 mView.onRegisterResult(t)
             }
