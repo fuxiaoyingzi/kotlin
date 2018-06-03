@@ -58,6 +58,8 @@ dependencies {
     // Anko Commons
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
     implementation project(':BaseLibrary')
+    implementation "io.reactivex:rxkotlin:$rx_kotlin_version"
+    implementation "io.reactivex:rxandroid:${rx_kotlin_android}"
 }
 repositories {
     mavenCentral()
