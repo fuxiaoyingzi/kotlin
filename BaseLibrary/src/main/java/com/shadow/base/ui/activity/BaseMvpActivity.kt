@@ -2,6 +2,7 @@ package com.shadow.base.ui.activity
 
 import com.shadow.base.presenter.BasePresenter
 import com.shadow.base.presenter.view.BaseView
+import javax.inject.Inject
 
 open class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
     override fun showLoading() {
@@ -16,6 +17,7 @@ open class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    @Inject
     lateinit var mPresenter: T
 
 }

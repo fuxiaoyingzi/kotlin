@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.shadow.kotlin">
+    package="com.shadow.base">
 
     <application>
-        <activity android:name="com.shadow.base.ui.activity.BaseActivity" />
-        <activity android:name="com.shadow.base.ui.activity.BaseMvpActivity"></activity>
+        <activity android:name=".ui.activity.BaseActivity" />
+        <activity android:name=".ui.activity.BaseMvpActivity"/>
     </application>
 
 </manifest>

@@ -4,9 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/App/App.iml" filepath="$PROJECT_DIR$/App/App.iml" />
       <module fileurl="file://$PROJECT_DIR$/BaseLibrary/BaseLibrary.iml" filepath="$PROJECT_DIR$/BaseLibrary/BaseLibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Provider/provider.iml" filepath="$PROJECT_DIR$/Provider/provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Provider/Provider.iml" filepath="$PROJECT_DIR$/Provider/Provider.iml" />
       <module fileurl="file://$PROJECT_DIR$/UsertCenter/UsertCenter.iml" filepath="$PROJECT_DIR$/UsertCenter/UsertCenter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/kotlin.iml" filepath="$PROJECT_DIR$/kotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kotlinApp.iml" filepath="$PROJECT_DIR$/kotlinApp.iml" />
     </modules>
   </component>
 </project>
