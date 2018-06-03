@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shadow.usercenter">
-
     //调试用的配置文件
     <application
         android:allowBackup="true"
@@ -15,6 +14,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.TestActivity"></activity>
     </application>
 
 </manifest>
