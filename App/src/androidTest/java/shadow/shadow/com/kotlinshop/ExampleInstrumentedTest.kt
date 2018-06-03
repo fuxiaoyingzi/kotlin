@@ -1,4 +1,4 @@
-package kotlin.shadow.com.kotlinshop
+package shadow.shadow.com.kotlinshop
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

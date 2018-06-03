@@ -1,9 +1,9 @@
-package com.shadow.kotlin.usercenter.ui.activity
+package com.shadow.usercenter.ui.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 
-import com.shadow.kotlin.usercenter.R
+import com.shadow.usercenter.R
 
 class RegisterActivity : AppCompatActivity() {
 

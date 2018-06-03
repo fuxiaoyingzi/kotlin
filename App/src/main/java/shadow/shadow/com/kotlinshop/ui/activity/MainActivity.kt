@@ -1,7 +1,7 @@
-package kotlin.shadow.com.kotlinshop.ui.activity
+package shadow.shadow.com.kotlinshop.ui.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import kotlin.shadow.com.kotlinshop.R
 
 class MainActivity : AppCompatActivity() {

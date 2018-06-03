@@ -23,12 +23,24 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        sourceSets { //动态加载配置文件
+            main {
+                if (isUserModule.toBoolean()) {//作为库的形式被引用
+                    manifest.srcFile 'src/main/release/AndroidManifest.xml'
+                    //release 模式下排除debug模式下的所有Java文件
+                    java {
+                        exclude 'debug/**'
+                    }
+                } else { //作为应用程序的方式启动调试
+                    manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+                }
+            }
+        }
     }
 
 }
-ext {
-    supportVersion = "27.1.1"
-}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$supportVersion"
@@ -37,4 +49,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':Provider')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

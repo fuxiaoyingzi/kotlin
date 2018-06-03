@@ -1,4 +1,4 @@
-package com.shadow.kotlin.usercenter;
+package com.shadow.usercenter;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package kotlin.shadow.com.kotlinshop
+package shadow.shadow.com.kotlinshop
 
 import org.junit.Test
 

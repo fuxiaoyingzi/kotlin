@@ -1,4 +1,4 @@
-package com.shadow.kotlin.usercenter;
+package com.shadow.usercenter;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
