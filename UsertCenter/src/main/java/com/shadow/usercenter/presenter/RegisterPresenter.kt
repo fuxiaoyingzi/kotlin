@@ -3,6 +3,7 @@ package com.shadow.usercenter.presenter
 import com.shadow.base.ext.execute
 import com.shadow.base.presenter.BasePresenter
 import com.shadow.base.rx.BaseSubscriber
+import com.shadow.base.utils.ToastUtil
 import com.shadow.usercenter.presenter.view.RegisterView
 import com.shadow.usercenter.service.UserRegister
 import javax.inject.Inject
@@ -18,8 +19,13 @@ class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
     lateinit var userRegister: UserRegister
 
     fun register(phoneNum: String, pwd: String, authCode: String) {
+        if (!checkNetWork()) {
+            ToastUtil.showMsg("没有网络")
+            mView.closeLoading()
+            return@register
+        }
         userRegister.register(phoneNum, pwd, authCode)
-                .execute(object : BaseSubscriber<Boolean>() {
+                .execute(object : BaseSubscriber<Boolean>(mView) {
                     override fun onNext(t: Boolean) {
                         if (t) {
                             mView.onRegisterResult("注册成功")

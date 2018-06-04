@@ -3,6 +3,8 @@
     package="com.shadow.usercenter">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name="com.shadow.base.common.BaseApplication"
         android:allowBackup="true"

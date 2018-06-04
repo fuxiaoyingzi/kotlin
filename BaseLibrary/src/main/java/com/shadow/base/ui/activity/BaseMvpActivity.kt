@@ -8,14 +8,18 @@ import com.shadow.base.injection.module.ActivityModule
 import com.shadow.base.injection.module.LifecycleProviderModule
 import com.shadow.base.presenter.BasePresenter
 import com.shadow.base.presenter.view.BaseView
+import com.shadow.base.widgets.ProgressDialog
 import javax.inject.Inject
 
 open abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
     lateinit var activityComponent: ActivityComponent
+    private lateinit var mProgressDialog: ProgressDialog
     override fun showLoading() {
+        mProgressDialog.show()
     }
 
     override fun closeLoading() {
+        mProgressDialog.dismiss()
     }
 
     override fun onError() {
@@ -28,6 +32,7 @@ open abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), Base
         super.onCreate(savedInstanceState)
         initInjection()
         injectComponent()
+        mProgressDialog = ProgressDialog.create(this)
     }
 
     private fun initInjection() {

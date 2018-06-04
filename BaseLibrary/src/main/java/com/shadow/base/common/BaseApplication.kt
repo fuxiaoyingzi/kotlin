@@ -4,6 +4,7 @@ import android.app.Application
 import com.shadow.base.injection.component.AppComponent
 import com.shadow.base.injection.component.DaggerAppComponent
 import com.shadow.base.injection.module.AppModule
+import kotlin.properties.Delegates
 
 /**
  * Author : shadow
@@ -15,6 +16,7 @@ class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initInjection()
+        instance = this
     }
 
     /**
@@ -22,5 +24,10 @@ class BaseApplication : Application() {
      */
     private fun initInjection() {
         appComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
+    }
+
+    companion object {
+        var instance: BaseApplication by Delegates.notNull()
+
     }
 }
