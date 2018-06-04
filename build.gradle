@@ -36,10 +36,11 @@ ext {
     supportVersion = "27.1.1"
     anko_version = '0.10.5'
     rx_kotlin_version = '1.0.0'
-    rx_kotlin_android = '1.2.1'
+    rx_kotlin_android = '1.1.0'
     okhttp_version = '3.10.0'
     retrofit_version = '2.4.0'
     dagger_version = '2.16'
+    rx_lifecycle_version = '1.0'
 }
 
 
