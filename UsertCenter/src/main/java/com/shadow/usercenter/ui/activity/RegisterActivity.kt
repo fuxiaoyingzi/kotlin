@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.toast
 
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
+
+
     private var pressTime: Long = 0
     override fun injectComponent() {
         DaggerUserComponent.builder().activityComponent(activityComponent).userModule(UserModule()).build().inject(this)

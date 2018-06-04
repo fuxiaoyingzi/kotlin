@@ -8,6 +8,7 @@ import com.shadow.base.injection.module.ActivityModule
 import com.shadow.base.injection.module.LifecycleProviderModule
 import com.shadow.base.presenter.BasePresenter
 import com.shadow.base.presenter.view.BaseView
+import com.shadow.base.utils.ToastUtil
 import com.shadow.base.widgets.ProgressDialog
 import javax.inject.Inject
 
@@ -22,7 +23,8 @@ open abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), Base
         mProgressDialog.dismiss()
     }
 
-    override fun onError() {
+    override fun onError(string: String) {
+        ToastUtil.showMsg(string)
     }
 
     @Inject

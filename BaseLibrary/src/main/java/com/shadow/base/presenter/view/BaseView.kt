@@ -8,5 +8,5 @@ package com.shadow.base.presenter.view
 interface BaseView {
     fun showLoading()
     fun closeLoading()
-    fun onError()
+    fun onError(string: String)
 }

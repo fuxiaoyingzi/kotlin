@@ -1,6 +1,7 @@
 package com.shadow.base.common
 
 import android.app.Application
+import android.content.Context
 import com.shadow.base.injection.component.AppComponent
 import com.shadow.base.injection.component.DaggerAppComponent
 import com.shadow.base.injection.module.AppModule
@@ -17,6 +18,7 @@ class BaseApplication : Application() {
         super.onCreate()
         initInjection()
         instance = this
+        context = this
     }
 
     /**
@@ -28,6 +30,7 @@ class BaseApplication : Application() {
 
     companion object {
         var instance: BaseApplication by Delegates.notNull()
+        lateinit var context: Context
 
     }
 }

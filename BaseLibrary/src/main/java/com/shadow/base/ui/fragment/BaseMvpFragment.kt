@@ -1,4 +1,4 @@
-package com.shadow.base.ui.adapter
+package com.shadow.base.ui.fragment
 
 import android.app.Activity
 import android.os.Bundle
@@ -9,6 +9,7 @@ import com.shadow.base.injection.module.ActivityModule
 import com.shadow.base.injection.module.LifecycleProviderModule
 import com.shadow.base.presenter.BasePresenter
 import com.shadow.base.presenter.view.BaseView
+import com.shadow.base.utils.ToastUtil
 import javax.inject.Inject
 
 open abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView {
@@ -19,8 +20,10 @@ open abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), Base
     override fun closeLoading() {
     }
 
-    override fun onError() {
+    override fun onError(string: String) {
+        ToastUtil.showMsg(string)
     }
+
 
     @Inject
     lateinit var mPresenter: T
