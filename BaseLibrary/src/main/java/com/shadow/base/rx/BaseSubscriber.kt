@@ -19,7 +19,9 @@ open class BaseSubscriber<T>(private val baseView: BaseView) : Subscriber<T>() {
     }
 
     override fun onError(e: Throwable?) {
-        Log.d("hh", e.toString())
         baseView.closeLoading()
+        if (e is BaseException){
+            baseView.onError(e.msg)
+        }
     }
 }

@@ -1,6 +1,9 @@
 package com.shadow.base.ext
 
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import com.kotlin.base.widgets.DefaultTextWatcher
 import com.shadow.base.data.protocol.BaseResp
 import com.shadow.base.rx.BaseFunc
 import com.shadow.base.rx.BaseFuncBoolean
@@ -44,11 +47,23 @@ fun View.onclick(listener: View.OnClickListener) {
 }
 
 /**
- * lamb表达式实现onclick方法
+ * lambda表达式实现onclick方法
  * 函数可以作为参数传递
  */
 fun View.onclick(method: () -> Unit) {
     this.setOnClickListener { method() }
+}
+
+/**
+ * 扩展事件，统一引用
+ */
+fun Button.enable(et: EditText, method: () -> Boolean) {
+    val btn = this
+    et.addTextChangedListener(object : DefaultTextWatcher() {
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            btn.isEnabled = method()
+        }
+    })
 }
 
 
