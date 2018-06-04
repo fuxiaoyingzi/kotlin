@@ -8,5 +8,5 @@ import com.shadow.base.presenter.view.BaseView
  * Date :2018/6/3/003
  */
 interface RegisterView : BaseView {
-    fun onRegisterResult(result: Boolean)
+    fun onRegisterResult(result: String)
 }

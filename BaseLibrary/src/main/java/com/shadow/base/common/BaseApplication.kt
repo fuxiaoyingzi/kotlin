@@ -17,6 +17,9 @@ class BaseApplication : Application() {
         initInjection()
     }
 
+    /**
+     * 初始化全局 component
+     */
     private fun initInjection() {
         appComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
     }

@@ -1,5 +1,6 @@
-package com.shadow.base.ui.activity
+package com.shadow.base.ui.adapter
 
+import android.app.Activity
 import android.os.Bundle
 import com.shadow.base.common.BaseApplication
 import com.shadow.base.injection.component.ActivityComponent
@@ -10,7 +11,7 @@ import com.shadow.base.presenter.BasePresenter
 import com.shadow.base.presenter.view.BaseView
 import javax.inject.Inject
 
-open abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
+open abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView {
     lateinit var activityComponent: ActivityComponent
     override fun showLoading() {
     }
@@ -27,16 +28,20 @@ open abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), Base
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initInjection()
-        injectComponent()
+        initInjection()
     }
 
+    //初始化module级别 component
+    abstract fun injectComponent()
+
+    /**
+     * 初始化activity级别的component
+     */
     private fun initInjection() {
         activityComponent = DaggerActivityComponent.builder()
-                .appComponent((application as BaseApplication).appComponent)
+                .appComponent((activity!!.application as BaseApplication).appComponent)
                 .lifecycleProviderModule(LifecycleProviderModule(this))
-                .activityModule(ActivityModule(this)).build()
+                .activityModule(ActivityModule(activity as Activity)).build()
     }
-
-    abstract fun injectComponent()
 
 }
