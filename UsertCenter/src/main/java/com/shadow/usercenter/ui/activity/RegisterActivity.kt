@@ -1,6 +1,7 @@
 package com.shadow.usercenter.ui.activity
 
 import android.os.Bundle
+import com.shadow.base.common.AppManager
 import com.shadow.base.ext.onclick
 import com.shadow.base.ui.activity.BaseMvpActivity
 import com.shadow.usercenter.R
@@ -12,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.toast
 
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
+    private var pressTime: Long = 0
     override fun injectComponent() {
         DaggerUserComponent.builder().activityComponent(activityComponent).userModule(UserModule()).build().inject(this)
         mPresenter.mView = this
@@ -27,6 +29,17 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         registerBtn.onclick {
             mPresenter.register(etPhoneNum.text.toString(), etPwd.text.toString(), etAuthCode.text.toString())
         }
+    }
+
+    override fun onBackPressed() {
+        val time = System.currentTimeMillis()
+        if (time - pressTime > 2000) {
+            toast("再按一次退出程序")
+            pressTime = time
+        } else {
+            AppManager.instance.exitApp(this)
+        }
+
     }
 
 
