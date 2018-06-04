@@ -5,4 +5,4 @@ package com.shadow.usercenter.data.protocol
  * Desc :
  * Date :2018/6/3/003
  */
-data class RegisterBody(val mobile: String, val verifyCode: String,val pwd: String)
+data class RegisterReq(val mobile: String, val verifyCode: String, val pwd: String)

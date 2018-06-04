@@ -14,18 +14,7 @@ import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.toast
 
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
-
-
     private var pressTime: Long = 0
-    override fun injectComponent() {
-        DaggerUserComponent.builder().activityComponent(activityComponent).userModule(UserModule()).build().inject(this)
-        mPresenter.mView = this
-    }
-
-    //注册回调
-    override fun onRegisterResult(result: String) {
-        toast(result)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +41,16 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
             showLoading()
             mPresenter.register(mMobileEt.text.toString(), mPwdEt.text.toString(), mVerifyCodeEt.text.toString())
         }
+    }
+
+    override fun injectComponent() {
+        DaggerUserComponent.builder().activityComponent(activityComponent).userModule(UserModule()).build().inject(this)
+        mPresenter.mView = this
+    }
+
+    //注册回调
+    override fun onRegisterResult(result: String) {
+        toast(result)
     }
 
 
