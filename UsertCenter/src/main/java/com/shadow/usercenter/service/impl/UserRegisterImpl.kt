@@ -14,6 +14,7 @@ import javax.inject.Inject
  * Date :2018/6/3/003
  */
 class UserRegisterImpl @Inject constructor() : UserRegister {
+
     @Inject
     lateinit var repository: UserRepository
 
@@ -26,5 +27,14 @@ class UserRegisterImpl @Inject constructor() : UserRegister {
         return repository.login(phoneNum, pwd, pushId)
                 .convert()
     }
+
+    override fun forgetPwd(phoneNum: String, authCode: String): Observable<Boolean> {
+        return repository.forgetPwd(phoneNum, authCode).convertBoolean()
+    }
+
+    override fun resetPwd(phoneNum: String, pwd: String): Observable<Boolean> {
+        return repository.resetPwd(phoneNum, pwd).convertBoolean()
+    }
+
 
 }

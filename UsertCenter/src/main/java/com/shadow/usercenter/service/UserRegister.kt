@@ -12,4 +12,6 @@ import rx.Observable
 interface UserRegister {
     fun register(phoneNum: String,pwd:String, authCode: String): Observable<Boolean>
     fun login(phoneNum: String, pwd: String, pushId: String): Observable<UserInfo>
+    fun forgetPwd(phoneNum: String, authCode: String): Observable<Boolean>
+    fun resetPwd(phoneNum: String, pwd: String): Observable<Boolean>
 }

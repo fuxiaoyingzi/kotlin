@@ -1,5 +1,7 @@
 package com.shadow.usercenter.data.repository
 
+import com.kotlin.user.data.protocol.ForgetPwdReq
+import com.kotlin.user.data.protocol.ResetPwdReq
 import com.kotlin.user.data.protocol.UserInfo
 import com.shadow.base.data.net.RetrofitFactory
 import com.shadow.base.data.protocol.BaseResp
@@ -23,5 +25,13 @@ class UserRepository @Inject constructor() {
     fun login(phoneNum: String, pwd: String, pushId: String): Observable<BaseResp<UserInfo>> {
         return RetrofitFactory.instance.create(UserApi::class.java)
                 .login(LoginReq(phoneNum, pwd, pushId))
+    }
+    fun forgetPwd(phoneNum: String, authCode: String): Observable<BaseResp<UserInfo>> {
+        return RetrofitFactory.instance.create(UserApi::class.java)
+                .forgetPwd(ForgetPwdReq(phoneNum, authCode))
+    }
+    fun resetPwd(phoneNum: String, pwd: String): Observable<BaseResp<UserInfo>> {
+        return RetrofitFactory.instance.create(UserApi::class.java)
+                .resetPwd(ResetPwdReq(phoneNum, pwd))
     }
 }

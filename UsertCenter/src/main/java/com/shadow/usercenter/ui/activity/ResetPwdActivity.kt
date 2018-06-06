@@ -1,47 +1,43 @@
 package com.shadow.usercenter.ui.activity
 
 import android.os.Bundle
+import com.shadow.base.common.AppManager
 import com.shadow.base.ext.enable
 import com.shadow.base.ext.onclick
 import com.shadow.base.ui.activity.BaseMvpActivity
 import com.shadow.usercenter.R
 import com.shadow.usercenter.injection.component.DaggerUserComponent
 import com.shadow.usercenter.injection.module.UserModule
-import com.shadow.usercenter.presenter.RegisterPresenter
-import com.shadow.usercenter.presenter.view.RegisterView
-import kotlinx.android.synthetic.main.activity_register.*
+import com.shadow.usercenter.presenter.ResetPwdPresenter
+import com.shadow.usercenter.presenter.view.ResetPwdView
+import kotlinx.android.synthetic.main.activity_reset_pwd.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 /**
- * 注册界面
+ * 重置密码
  */
-class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
+class ResetPwdActivity : BaseMvpActivity<ResetPwdPresenter>(), ResetPwdView {
 
+    private lateinit var phoneNumber: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_reset_pwd)
         initView()
     }
 
     private fun initView() {
+        phoneNumber = intent.getStringExtra("phoneNum")
         /**
          * 监听事件扩展，确定是否所有的et都有值，让注册按钮可点击
          */
-        mRegisterBtn.enable(mMobileEt, { btnIsEnable() })
-        mRegisterBtn.enable(mVerifyCodeEt, { btnIsEnable() })
-        mRegisterBtn.enable(mPwdEt, { btnIsEnable() })
-        mRegisterBtn.enable(mPwdConfirmEt, { btnIsEnable() })
+        mConfirmBtn.enable(mPwdEt, { btnIsEnable() })
+        mConfirmBtn.enable(mPwdConfirmEt, { btnIsEnable() })
 
-        //发送验证码
-        mVerifyCodeBtn.onclick {
-            mVerifyCodeBtn.requestSendVerifyNumber()
-            toast("发送验证码成功")
-        }
         //注册
-        mRegisterBtn.onclick {
+        mConfirmBtn.onclick {
             showLoading()
-            mPresenter.register(mMobileEt.text.toString(), mPwdEt.text.toString(), mVerifyCodeEt.text.toString())
+            mPresenter.resetPwd(phoneNumber,mPwdEt.text.toString())
         }
     }
 
@@ -50,21 +46,20 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         mPresenter.mView = this
     }
 
-    //注册回调
-    override fun onRegisterResult(result: String) {
+    /**
+     * 重置密码回调
+     */
+    override fun onResetPwdResult(result: String) {
         toast(result)
         startActivity<LoginActivity>()
     }
-
-
 
 
     /**
      * 判断editView的值是否为空
      */
     private fun btnIsEnable(): Boolean {
-        return mMobileEt.text.isNullOrEmpty().not() && mVerifyCodeEt.text.isNullOrEmpty().not()
-                && mPwdEt.text.isNullOrEmpty().not() && mPwdConfirmEt.text.isNullOrEmpty().not()
+        return mPwdEt.text.isNullOrEmpty().not() && mPwdConfirmEt.text.isNullOrEmpty().not()
     }
 
 

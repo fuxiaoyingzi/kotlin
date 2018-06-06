@@ -1,5 +1,7 @@
 package com.shadow.usercenter.data.api
 
+import com.kotlin.user.data.protocol.ForgetPwdReq
+import com.kotlin.user.data.protocol.ResetPwdReq
 import com.kotlin.user.data.protocol.UserInfo
 import com.shadow.base.data.protocol.BaseResp
 import com.shadow.usercenter.data.protocol.LoginReq
@@ -19,4 +21,10 @@ interface UserApi {
 
     @POST("userCenter/login")
     fun login(@Body req: LoginReq): Observable<BaseResp<UserInfo>>
+
+    @POST("userCenter/forgetPwd")
+    fun forgetPwd(@Body req: ForgetPwdReq): Observable<BaseResp<UserInfo>>
+
+    @POST("userCenter/resetPwd")
+    fun resetPwd(@Body req: ResetPwdReq): Observable<BaseResp<UserInfo>>
 }

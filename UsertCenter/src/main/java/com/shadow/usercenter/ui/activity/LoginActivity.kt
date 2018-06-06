@@ -2,6 +2,7 @@ package com.shadow.usercenter.ui.activity
 
 import android.os.Bundle
 import com.kotlin.user.data.protocol.UserInfo
+import com.shadow.base.common.AppManager
 import com.shadow.base.ext.enable
 import com.shadow.base.ext.onclick
 import com.shadow.base.ui.activity.BaseMvpActivity
@@ -18,7 +19,7 @@ import org.jetbrains.anko.toast
  * 登录界面
  */
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
-
+    private var pressTime: Long = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -32,7 +33,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
         mLoginBtn.enable(mMobileEt, { btnIsEnable() })
         mLoginBtn.enable(mPwdEt, { btnIsEnable() })
 
-        //注册
+        //登录
         mLoginBtn.onclick {
             showLoading()
             mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), "")
@@ -41,6 +42,11 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
         //注册
         mHeaderBar.getRightView().onclick {
             startActivity<RegisterActivity>()
+        }
+
+        //忘记密码
+        mForgetPwdTv.onclick {
+            startActivity<ForgetPwdActivity>()
         }
     }
 
@@ -59,5 +65,17 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
         DaggerUserComponent.builder().activityComponent(activityComponent).userModule(UserModule()).build().inject(this)
         mPresenter.mView = this
     }
+
+    //再按一次退出程序
+     override fun onBackPressed() {
+         val time = System.currentTimeMillis()
+         if (time - pressTime > 2000) {
+             toast("再按一次退出程序")
+             pressTime = time
+         } else {
+             AppManager.instance.exitApp(this)
+         }
+
+     }
 
 }

@@ -12,6 +12,8 @@
         android:supportsRtl="true">
         <activity android:name=".ui.activity.RegisterActivity" />
         <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.ForgetPwdActivity"/>
+        <activity android:name=".ui.activity.ResetPwdActivity"/>
         <activity android:name=".ui.activity.TestActivity" />
     </application>
 
