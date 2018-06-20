@@ -1,5 +1,6 @@
 package com.shadow.base.data.net
 
+import com.kotlin.base.utils.AppPrefsUtils
 import com.shadow.base.common.BaseConstants
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -27,6 +28,7 @@ class RetrofitFactory private constructor() {
             val request = chain.request().newBuilder()
                     .addHeader("Content-Type", "application/json")
                     .addHeader("charset", "utf-8")
+                    .addHeader("token", AppPrefsUtils.getString(BaseConstants.KEY_SP_TOKEN))
                     .build()
             chain.proceed(request)
         }

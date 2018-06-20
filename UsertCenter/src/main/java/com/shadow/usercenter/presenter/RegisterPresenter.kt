@@ -4,7 +4,7 @@ import com.shadow.base.ext.execute
 import com.shadow.base.presenter.BasePresenter
 import com.shadow.base.rx.BaseSubscriber
 import com.shadow.usercenter.presenter.view.RegisterView
-import com.shadow.usercenter.service.UserRegister
+import com.shadow.usercenter.service.UserService
 import javax.inject.Inject
 
 /**
@@ -15,7 +15,7 @@ import javax.inject.Inject
 class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
     //同一个接口，两种不同实现的注解，区分使用，限定符named
     @Inject
-    lateinit var userRegister: UserRegister
+    lateinit var userRegister: UserService
 
     fun register(phoneNum: String, pwd: String, authCode: String) {
         if (!checkNetWork()) {

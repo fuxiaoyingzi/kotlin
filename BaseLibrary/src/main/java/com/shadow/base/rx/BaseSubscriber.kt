@@ -1,6 +1,5 @@
 package com.shadow.base.rx
 
-import android.util.Log
 import com.shadow.base.presenter.view.BaseView
 import rx.Subscriber
 

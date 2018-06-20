@@ -11,8 +11,7 @@ import com.shadow.usercenter.injection.module.UserModule
 import com.shadow.usercenter.presenter.ResetPwdPresenter
 import com.shadow.usercenter.presenter.view.ResetPwdView
 import kotlinx.android.synthetic.main.activity_reset_pwd.*
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.*
 
 /**
  * 重置密码
@@ -51,7 +50,8 @@ class ResetPwdActivity : BaseMvpActivity<ResetPwdPresenter>(), ResetPwdView {
      */
     override fun onResetPwdResult(result: String) {
         toast(result)
-        startActivity<LoginActivity>()
+        //startActivity<LoginActivity>()
+        startActivity(intentFor<LoginActivity>().singleTop().clearTop())
     }
 
 

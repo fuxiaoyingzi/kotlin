@@ -4,7 +4,7 @@ import com.shadow.base.presenter.view.BaseView
 
 /**
  * Author : shadow
- * Desc :
+ * Desc : 重置密码
  * Date :2018/6/3/003
  */
 interface ResetPwdView : BaseView {

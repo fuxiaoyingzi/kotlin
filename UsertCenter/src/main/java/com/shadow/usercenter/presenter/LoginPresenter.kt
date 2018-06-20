@@ -5,7 +5,7 @@ import com.shadow.base.ext.execute
 import com.shadow.base.presenter.BasePresenter
 import com.shadow.base.rx.BaseSubscriber
 import com.shadow.usercenter.presenter.view.LoginView
-import com.shadow.usercenter.service.UserRegister
+import com.shadow.usercenter.service.UserService
 import javax.inject.Inject
 
 /**
@@ -16,7 +16,7 @@ import javax.inject.Inject
 class LoginPresenter @Inject constructor() : BasePresenter<LoginView>() {
 
     @Inject
-    lateinit var userLogin: UserRegister
+    lateinit var userLogin: UserService
 
     fun login(phoneNum: String, pwd: String, pushId: String) {
         if (!checkNetWork()) {

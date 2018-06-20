@@ -5,5 +5,4 @@ package com.shadow.base.rx
  * Desc :
  * Date :2018/6/3/003
  */
-class BaseException(val status: Int, val msg: String) : Throwable() {
-}
+class BaseException(val status: Int, val msg: String) : Throwable()

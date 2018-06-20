@@ -4,16 +4,16 @@ import com.kotlin.user.data.protocol.UserInfo
 import com.shadow.base.ext.convert
 import com.shadow.base.ext.convertBoolean
 import com.shadow.usercenter.data.repository.UserRepository
-import com.shadow.usercenter.service.UserRegister
+import com.shadow.usercenter.service.UserService
 import rx.Observable
 import javax.inject.Inject
 
 /**
  * Author : shadow
- * Desc :
+ * Desc : 服务器json 数据 转换为 实体数据
  * Date :2018/6/3/003
  */
-class UserRegisterImpl @Inject constructor() : UserRegister {
+class UserServiceImpl @Inject constructor() : UserService {
 
     @Inject
     lateinit var repository: UserRepository
@@ -36,5 +36,8 @@ class UserRegisterImpl @Inject constructor() : UserRegister {
         return repository.resetPwd(phoneNum, pwd).convertBoolean()
     }
 
+    override fun editUserInfo(userIcon: String, userName: String, userSex: String, userSign: String): Observable<UserInfo> {
+        return repository.editUserInfo(userIcon, userName, userSex, userSign).convert()
+    }
 
 }

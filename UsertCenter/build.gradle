@@ -11,7 +11,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
 
@@ -46,6 +46,10 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation "com.android.support:design:$supportVersion"
+    implementation "com.android.support:support-vector-drawable:$supportVersion"
+    implementation "com.android.support:support-v4:$supportVersion"
+    implementation "com.android.support:support-vector-drawable:$supportVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -62,15 +66,21 @@ dependencies {
     implementation project(':BaseLibrary')
     implementation "io.reactivex:rxkotlin:$rx_kotlin_version"
     implementation "io.reactivex:rxandroid:${rx_kotlin_android}"
-
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-
-    implementation "com.google.dagger:dagger:2.16"
+    implementation 'com.google.dagger:dagger:2.16'
     kapt "com.google.dagger:dagger-compiler:2.16"
+    //Circle ImageView
+    implementation "de.hdodenhof:circleimageview:${circle_imageView_version}"
+    //Take Photo
+    implementation "com.jph.takephoto:takephoto_library:${take_photo_version}"
+    //Alert View
+    implementation "com.bigkoo:alertview:${alert_view_version}"
+    //七牛
+    compile 'com.qiniu:qiniu-android-sdk:7.3.+'
 }
 repositories {
     mavenCentral()

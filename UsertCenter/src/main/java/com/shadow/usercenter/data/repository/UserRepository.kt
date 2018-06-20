@@ -1,5 +1,6 @@
 package com.shadow.usercenter.data.repository
 
+import com.kotlin.user.data.protocol.EditUserReq
 import com.kotlin.user.data.protocol.ForgetPwdReq
 import com.kotlin.user.data.protocol.ResetPwdReq
 import com.kotlin.user.data.protocol.UserInfo
@@ -13,7 +14,7 @@ import javax.inject.Inject
 
 /**
  * Author : shadow
- * Desc :
+ * Desc : 服务器接口 和presenter之间的桥梁
  * Date :2018/6/3/003
  */
 class UserRepository @Inject constructor() {
@@ -26,12 +27,19 @@ class UserRepository @Inject constructor() {
         return RetrofitFactory.instance.create(UserApi::class.java)
                 .login(LoginReq(phoneNum, pwd, pushId))
     }
+
     fun forgetPwd(phoneNum: String, authCode: String): Observable<BaseResp<UserInfo>> {
         return RetrofitFactory.instance.create(UserApi::class.java)
                 .forgetPwd(ForgetPwdReq(phoneNum, authCode))
     }
+
     fun resetPwd(phoneNum: String, pwd: String): Observable<BaseResp<UserInfo>> {
         return RetrofitFactory.instance.create(UserApi::class.java)
                 .resetPwd(ResetPwdReq(phoneNum, pwd))
+    }
+
+    fun editUserInfo(userIcon: String, userName: String, userSex: String, userSign: String): Observable<BaseResp<UserInfo>> {
+        return RetrofitFactory.instance.create(UserApi::class.java)
+                .editUser(EditUserReq(userIcon, userName, userSex, userSign))
     }
 }

@@ -2,11 +2,11 @@ package com.shadow.usercenter.injection.component
 
 import com.shadow.base.injection.PerComponentScope
 import com.shadow.base.injection.component.ActivityComponent
+import com.shadow.base.presenter.BasePresenter
+import com.shadow.base.presenter.view.BaseView
+import com.shadow.base.ui.activity.BaseMvpActivity
 import com.shadow.usercenter.injection.module.UserModule
-import com.shadow.usercenter.ui.activity.ForgetPwdActivity
-import com.shadow.usercenter.ui.activity.LoginActivity
-import com.shadow.usercenter.ui.activity.RegisterActivity
-import com.shadow.usercenter.ui.activity.ResetPwdActivity
+import com.shadow.usercenter.ui.activity.*
 import dagger.Component
 
 /**
@@ -17,8 +17,9 @@ import dagger.Component
 @PerComponentScope
 @Component(dependencies = arrayOf(ActivityComponent::class), modules = [(UserModule::class)])
 interface UserComponent {
-    fun inject(activity: RegisterActivity)
+   fun inject(activity: RegisterActivity)
     fun inject(activity: LoginActivity)
     fun inject(activity: ForgetPwdActivity)
     fun inject(activity: ResetPwdActivity)
+    fun inject(activity: UserInfoActivity)
 }

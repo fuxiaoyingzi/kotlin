@@ -4,7 +4,7 @@ import com.shadow.base.presenter.view.BaseView
 
 /**
  * Author : shadow
- * Desc :
+ * Desc : 注册
  * Date :2018/6/3/003
  */
 interface RegisterView : BaseView {

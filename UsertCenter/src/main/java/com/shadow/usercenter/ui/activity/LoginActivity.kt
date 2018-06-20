@@ -2,6 +2,7 @@ package com.shadow.usercenter.ui.activity
 
 import android.os.Bundle
 import com.kotlin.user.data.protocol.UserInfo
+import com.kotlin.user.utils.UserPrefsUtils
 import com.shadow.base.common.AppManager
 import com.shadow.base.ext.enable
 import com.shadow.base.ext.onclick
@@ -59,6 +60,8 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
 
     override fun onLoginResult(result: UserInfo) {
         toast("登录成功")
+        startActivity<UserInfoActivity>()
+        UserPrefsUtils.putUserInfo(result)
     }
 
     override fun injectComponent() {
@@ -67,15 +70,15 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
     }
 
     //再按一次退出程序
-     override fun onBackPressed() {
-         val time = System.currentTimeMillis()
-         if (time - pressTime > 2000) {
-             toast("再按一次退出程序")
-             pressTime = time
-         } else {
-             AppManager.instance.exitApp(this)
-         }
+    override fun onBackPressed() {
+        val time = System.currentTimeMillis()
+        if (time - pressTime > 2000) {
+            toast("再按一次退出程序")
+            pressTime = time
+        } else {
+            AppManager.instance.exitApp(this)
+        }
 
-     }
+    }
 
 }

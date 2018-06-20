@@ -1,5 +1,6 @@
 package com.shadow.usercenter.data.api
 
+import com.kotlin.user.data.protocol.EditUserReq
 import com.kotlin.user.data.protocol.ForgetPwdReq
 import com.kotlin.user.data.protocol.ResetPwdReq
 import com.kotlin.user.data.protocol.UserInfo
@@ -27,4 +28,16 @@ interface UserApi {
 
     @POST("userCenter/resetPwd")
     fun resetPwd(@Body req: ResetPwdReq): Observable<BaseResp<UserInfo>>
+
+    /*
+         获取七牛云上传凭证
+      */
+    @POST("common/getUploadToken")
+    fun getUploadToken(): Observable<BaseResp<String>>
+
+    /*
+      编辑用户资料
+   */
+    @POST("userCenter/editUser")
+    fun editUser(@Body req:EditUserReq):Observable<BaseResp<UserInfo>>
 }
