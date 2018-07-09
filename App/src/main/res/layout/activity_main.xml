@@ -5,6 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNavBar" />
+
     <com.shadow.base.widgets.BottomNavBar
         android:id="@+id/bottomNavBar"
         android:layout_width="match_parent"
