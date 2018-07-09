@@ -15,5 +15,6 @@ class UploadRepository @Inject constructor() {
     fun getUploadToken(): Observable<BaseResp<String>> {
         return RetrofitFactory.instance.create(UserApi::class.java)
                 .getUploadToken()
+
     }
 }

@@ -9,7 +9,6 @@ import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.jph.takephoto.app.TakePhoto
 import com.jph.takephoto.app.TakePhotoImpl
-import com.jph.takephoto.compress.CompressConfig
 import com.jph.takephoto.model.TResult
 import com.kotlin.base.utils.AppPrefsUtils
 import com.kotlin.base.utils.DateUtils
@@ -27,17 +26,19 @@ import com.shadow.usercenter.injection.module.UserModule
 import com.shadow.usercenter.presenter.UserInfoPresenter
 import com.shadow.usercenter.presenter.view.UserInfoView
 import kotlinx.android.synthetic.main.activity_user_info.*
-import kotlinx.android.synthetic.main.layout_header_bar.view.*
 import org.jetbrains.anko.toast
+import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import rx.functions.Action
 import java.io.File
+import java.util.concurrent.TimeUnit
+import kotlin.concurrent.timer
 
 
 /**
- * 注册界面
+ * 用户界面
  */
 open class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView, TakePhoto.TakeResultListener {
-
-
     private lateinit var mTakePhoto: TakePhoto
     private lateinit var mTempFile: File
     private var mLocalFileUrl: String? = null
@@ -65,7 +66,7 @@ open class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView
         mUserIconView.onclick {
             showAlertView()
         }
-        mHeaderBar.mRightTv.onclick {
+        mHeaderBar.getRightView().onclick {
             toast("修改用户信息")
             mPresenter.editUserInfo(
                     mRemoteFileUrl!!,
@@ -88,10 +89,10 @@ open class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView
         }
         mUserNameEt.setText(mUserName)
         if (mUserSex == "0") {
-            mGenderMaleRb.isChecked = true
+            mGenderFemaleRb.isChecked = true
             mGenderMaleRb.isChecked = false
         } else {
-            mGenderMaleRb.isChecked = false
+            mGenderFemaleRb.isChecked = false
             mGenderMaleRb.isChecked = true
         }
         mUserSignEt.setText(mUserSign)
@@ -112,7 +113,7 @@ open class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView
     private fun showAlertView() {
         AlertView("选择图片", "", "取消", null, arrayOf("拍照", "相册"), this,
                 AlertView.Style.ActionSheet, OnItemClickListener { o, position ->
-            mTakePhoto.onEnableCompress(CompressConfig.ofDefaultConfig(), false)
+            // mTakePhoto.onEnableCompress(CompressConfig.ofDefaultConfig(), false)
             when (position) {
                 0 -> {
                     createTempFile()
@@ -128,10 +129,7 @@ open class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView
         获取图片，成功回调
      */
     override fun takeSuccess(result: TResult?) {
-        toast("success origin ${result?.image?.originalPath},compress ${result?.image?.compressPath}")
-        Log.d("TakePhoto", result?.image?.originalPath)
-        Log.d("TakePhoto", result?.image?.compressPath)
-        mLocalFileUrl = result?.image?.compressPath
+        mLocalFileUrl = result?.image?.originalPath
         mPresenter.getUploadToken()
     }
 
@@ -139,12 +137,14 @@ open class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView
         获取图片，取消回调
      */
     override fun takeCancel() {
+        toast("takeCancel")
     }
 
     /*
         获取图片，失败回调
      */
     override fun takeFail(result: TResult?, msg: String?) {
+        toast("takeFail")
         Log.e("takePhoto", msg)
     }
 
@@ -174,16 +174,25 @@ open class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView
      */
     override fun onGetUploadToken(result: String) {
         //上传图片到七牛云
-        uploadManager.put(mLocalFileUrl, null, result,
-                { key, info, response ->
-                    mRemoteFileUrl = BaseConstants.IMAGE_SERVER_ADDRESS + response!!.get("hash")
-                    GlideUtils.loadImage(this@UserInfoActivity, mRemoteFileUrl!!, mUserIconIv)
-                }, null)
+        uploadManager.put(mLocalFileUrl, null, result, { key, info, response ->
+            if (info != null && info.isOK) {
+                Log.i("qiniu", "Upload Success");
+            } else {
+                Log.i("qiniu", "Upload Fail");
+                //如果失败，这里可以把info信息上报自己的服务器，便于后面分析上传错误原因
+            }
+            if (response != null) {
+                mRemoteFileUrl = BaseConstants.IMAGE_SERVER_ADDRESS + response.get("hash")
+                Log.d("test", mRemoteFileUrl)
+                GlideUtils.loadUrlImage(this@UserInfoActivity, mRemoteFileUrl!!, mUserIconIv)
+            }
+        }, null)
     }
 
 
     override fun onEditUser(result: UserInfo) {
         UserPrefsUtils.putUserInfo(result)
+        initData()
         toast("修改成功")
     }
 }

@@ -71,7 +71,6 @@
                 android:layout_marginRight="@dimen/common_margin"
                 android:background="@drawable/gender_bg_selector"
                 android:button="@null"
-                android:checked="true"
                 android:gravity="center"
                 android:text="男"
                 android:textColor="@drawable/gender_text_selector"

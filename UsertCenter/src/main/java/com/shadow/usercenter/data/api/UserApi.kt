@@ -30,8 +30,8 @@ interface UserApi {
     fun resetPwd(@Body req: ResetPwdReq): Observable<BaseResp<UserInfo>>
 
     /*
-         获取七牛云上传凭证
-      */
+       获取七牛云上传凭证
+    */
     @POST("common/getUploadToken")
     fun getUploadToken(): Observable<BaseResp<String>>
 
