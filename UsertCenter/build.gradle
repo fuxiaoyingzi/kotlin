@@ -45,45 +45,20 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "com.android.support:appcompat-v7:$supportVersion"
-    implementation "com.android.support:design:$supportVersion"
-    implementation "com.android.support:support-vector-drawable:$supportVersion"
-    implementation "com.android.support:support-v4:$supportVersion"
-    implementation "com.android.support:support-vector-drawable:$supportVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
     implementation project(':Provider')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    //anko
-    // Appcompat-v7 (only Anko Commons)
-    implementation "org.jetbrains.anko:anko-appcompat-v7-commons:$anko_version"
-    // Support-v4 (only Anko Commons)
-    implementation "org.jetbrains.anko:anko-support-v4-commons:$anko_version"
-    // Anko Commons
-    implementation "org.jetbrains.anko:anko-commons:$anko_version"
     implementation project(':BaseLibrary')
-    implementation "io.reactivex:rxkotlin:$rx_kotlin_version"
-    implementation "io.reactivex:rxandroid:${rx_kotlin_android}"
-    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-
-    //RxLifecycle
-    implementation "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
-    implementation "com.trello:rxlifecycle-components:$rx_lifecycle_version"
-
-    implementation 'com.google.dagger:dagger:2.16'
-    kapt "com.google.dagger:dagger-compiler:2.16"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
     //Circle ImageView
-    implementation "de.hdodenhof:circleimageview:${circle_imageView_version}"
+    compile "de.hdodenhof:circleimageview:${circle_imageView_version}"
     //Take Photo
-    implementation "com.jph.takephoto:takephoto_library:${take_photo_version}"
+    compile "com.jph.takephoto:takephoto_library:${take_photo_version}"
     //Alert View
-    implementation "com.bigkoo:alertview:${alert_view_version}"
+    compile "com.bigkoo:alertview:${alert_view_version}"
     //七牛
     compile 'com.qiniu:qiniu-android-sdk:7.3.+'
 }

@@ -1,7 +1,6 @@
 package com.shadow.usercenter.ui.activity
 
 import android.os.Bundle
-import com.shadow.base.common.AppManager
 import com.shadow.base.ext.enable
 import com.shadow.base.ext.onclick
 import com.shadow.base.ui.activity.BaseMvpActivity

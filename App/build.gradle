@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
@@ -25,36 +26,20 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "com.android.support:appcompat-v7:27.1.1"
-    implementation "com.android.support:design:$supportVersion"
-    implementation "com.android.support:support-vector-drawable:$supportVersion"
-    implementation "com.android.support:support-v4:$supportVersion"
-    implementation "com.android.support:support-vector-drawable:$supportVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
     //引入module------------------------------
     implementation project(':Provider')
     if (isUserModule.toBoolean()) { //动态加载模块类型
         implementation project(':UsertCenter')
     }
     implementation project(':BaseLibrary')
-    ///------------------------------------------------
+    implementation project(':MessageCenter')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    //RxLifecycle
-    implementation "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
-    implementation "com.trello:rxlifecycle-components:$rx_lifecycle_version"
-    implementation "io.reactivex:rxkotlin:$rx_kotlin_version"
-    implementation "io.reactivex:rxandroid:${rx_kotlin_android}"
-
-    //底部导航栏
-    implementation 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
-
-    //轮播图
-    implementation 'com.youth.banner:banner:1.4.10'  //最新版本
 }
 repositories {
     mavenCentral()

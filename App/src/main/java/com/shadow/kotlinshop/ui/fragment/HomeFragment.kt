@@ -11,10 +11,9 @@ import com.kotlin.mall.common.HOME_BANNER_THREE
 import com.kotlin.mall.common.HOME_BANNER_TWO
 import com.shadow.base.widgets.GlideImageLoader
 import com.shadow.kotlinshop.R
-import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
-import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
  * Author : shadow
@@ -23,17 +22,18 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
  */
 class HomeFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
-    private lateinit var mBanner: Banner
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val rootView = inflater.inflate(R.layout.fragment_home, null)
-        mBanner = rootView.findViewById(R.id.mBanner)
+        return rootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initBanner()
-        return rootView;
+        mNewsFlipperView.setData(arrayOf("hello shadow1","hello shadow2","hello shadow3","hello shadow4"))
     }
 
     private fun initBanner() {
