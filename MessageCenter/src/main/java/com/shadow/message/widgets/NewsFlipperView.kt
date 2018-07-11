@@ -16,6 +16,16 @@ import com.android.shadow.messagecenter.R
 class NewsFlipperView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
+    /**
+     * setInAnimation 设置View进入屏幕时候使用的动画
+     * setOutAnimation 设置View退出屏幕时候使用的动画
+     * showPrevious 显示ViewFlipper里面的上一个View showNext 显示ViewFlipper里面的下一个View
+     * setFlipInterval 设置View之间切换的时间间隔
+     * startFlipping 使用setFlipInterval方法设置的时间间隔来开始切换所有的View,切换会循环进行
+     * stopFlipping 停止View切换
+     * isFlipping 用来判断View切换是否正在进行
+     * setDisplayedChild 切换到指定子View
+     */
      var mFlipperView: ViewFlipper
 
     init {

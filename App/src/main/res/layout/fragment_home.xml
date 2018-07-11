@@ -23,12 +23,35 @@
         android:id="@+id/mBanner"
         android:layout_width="match_parent"
         android:layout_height="150dp" />
+
     <com.shadow.message.widgets.NewsFlipperView
         android:id="@+id/mNewsFlipperView"
         style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/common_margin_small"
         android:layout_marginLeft="@dimen/common_margin_middle"
-        android:layout_marginTop="@dimen/common_margin_small"
         android:layout_marginRight="@dimen/common_margin_middle"
-        android:layout_marginBottom="@dimen/common_margin_small"/>
+        android:layout_marginTop="@dimen/common_margin_small" />
+
+    <TextView
+        style="@style/MatchWrap"
+        android:background="@color/common_white"
+        android:drawableLeft="@drawable/icon_special"
+        android:drawablePadding="@dimen/common_padding_small"
+        android:paddingBottom="@dimen/common_margin_small"
+        android:paddingLeft="@dimen/common_margin"
+        android:paddingTop="@dimen/common_padding_small"
+        android:text="火爆进行中"
+        android:textColor="@color/text_light_dark"
+        android:textSize="@dimen/text_small_size"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mHomeDiscountRv"
+        style="@style/commonRecyclerView"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white"
+        android:paddingBottom="@dimen/common_padding_small"
+        android:paddingLeft="@dimen/common_padding"
+        android:paddingRight="@dimen/common_padding" />
 
 </LinearLayout>

@@ -2,15 +2,16 @@ package com.shadow.kotlinshop.ui.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.kotlin.mall.common.HOME_BANNER_FOUR
-import com.kotlin.mall.common.HOME_BANNER_ONE
-import com.kotlin.mall.common.HOME_BANNER_THREE
-import com.kotlin.mall.common.HOME_BANNER_TWO
+import android.widget.LinearLayout
+import com.kotlin.mall.common.*
+import com.shadow.base.common.BaseConstants
 import com.shadow.base.widgets.GlideImageLoader
 import com.shadow.kotlinshop.R
+import com.shadow.kotlinshop.ui.adapter.HomeDiscountAdapter
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -26,16 +27,17 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val rootView = inflater.inflate(R.layout.fragment_home, null)
-        return rootView
+        return  inflater.inflate(R.layout.fragment_home, null)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initBanner()
         mNewsFlipperView.setData(arrayOf("hello shadow1","hello shadow2","hello shadow3","hello shadow4"))
+        initDiscount()
     }
 
+    //初始化banner
     private fun initBanner() {
         mBanner.setImageLoader(GlideImageLoader())
         mBanner.setImages(listOf(HOME_BANNER_ONE, HOME_BANNER_TWO, HOME_BANNER_THREE, HOME_BANNER_FOUR))
@@ -47,6 +49,15 @@ class HomeFragment : Fragment() {
         //banner设置方法全部调用完毕时最后调用
         mBanner.start()
 
+    }
+    //初始化折扣
+    private fun initDiscount() {
+        val manager = LinearLayoutManager(context)
+        manager.orientation = LinearLayout.HORIZONTAL
+        mHomeDiscountRv.layoutManager = manager
+        val discountAdapter = HomeDiscountAdapter(activity!!)
+        discountAdapter.setData(mutableListOf(HOME_DISCOUNT_ONE,HOME_DISCOUNT_TWO, HOME_DISCOUNT_THREE, HOME_DISCOUNT_FOUR, HOME_DISCOUNT_FIVE))
+        mHomeDiscountRv.adapter = discountAdapter
     }
 
     override fun onStart() {
