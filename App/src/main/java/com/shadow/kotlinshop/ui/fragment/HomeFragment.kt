@@ -8,13 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.kotlin.mall.common.*
-import com.shadow.base.common.BaseConstants
+import com.kotlin.mall.ui.adapter.TopicAdapter
 import com.shadow.base.widgets.GlideImageLoader
 import com.shadow.kotlinshop.R
 import com.shadow.kotlinshop.ui.adapter.HomeDiscountAdapter
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
+import me.crosswall.lib.coverflow.CoverFlow
 
 /**
  * Author : shadow
@@ -22,19 +23,17 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * Date :2018/7/9/009
  */
 class HomeFragment : Fragment() {
-
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return  inflater.inflate(R.layout.fragment_home, null)
+        return inflater.inflate(R.layout.fragment_home, null)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initBanner()
-        mNewsFlipperView.setData(arrayOf("hello shadow1","hello shadow2","hello shadow3","hello shadow4"))
+        mNewsFlipperView.setData(arrayOf("hello shadow1", "hello shadow2", "hello shadow3", "hello shadow4"))
         initDiscount()
+        initTopic()
     }
 
     //初始化banner
@@ -50,14 +49,29 @@ class HomeFragment : Fragment() {
         mBanner.start()
 
     }
+
     //初始化折扣
     private fun initDiscount() {
         val manager = LinearLayoutManager(context)
         manager.orientation = LinearLayout.HORIZONTAL
         mHomeDiscountRv.layoutManager = manager
         val discountAdapter = HomeDiscountAdapter(activity!!)
-        discountAdapter.setData(mutableListOf(HOME_DISCOUNT_ONE,HOME_DISCOUNT_TWO, HOME_DISCOUNT_THREE, HOME_DISCOUNT_FOUR, HOME_DISCOUNT_FIVE))
+        discountAdapter.setData(mutableListOf(HOME_DISCOUNT_ONE, HOME_DISCOUNT_TWO, HOME_DISCOUNT_THREE, HOME_DISCOUNT_FOUR, HOME_DISCOUNT_FIVE))
         mHomeDiscountRv.adapter = discountAdapter
+    }
+
+    //初始化主题 画廊效果
+    private fun initTopic() {
+        //话题
+        mTopicPager.adapter = TopicAdapter(context!!, listOf(HOME_TOPIC_ONE, HOME_TOPIC_TWO, HOME_TOPIC_THREE, HOME_TOPIC_FOUR, HOME_TOPIC_FIVE))
+        mTopicPager.currentItem = 1
+        mTopicPager.offscreenPageLimit = 5
+        CoverFlow.Builder()
+                .with(mTopicPager)
+                .scale(0.3f)
+                .pagerMargin(-30.0f)
+                .spaceSize(0.0f)
+                .build()
     }
 
     override fun onStart() {

@@ -18,12 +18,12 @@
             style="@style/WrapWrap"
             android:src="@drawable/icon_scan" />
     </LinearLayout>
-
+    <!--banner-->
     <com.youth.banner.Banner
         android:id="@+id/mBanner"
         android:layout_width="match_parent"
         android:layout_height="150dp" />
-
+    <!--折扣轮播-->
     <com.shadow.message.widgets.NewsFlipperView
         android:id="@+id/mNewsFlipperView"
         style="@style/MatchWrap"
@@ -32,6 +32,7 @@
         android:layout_marginRight="@dimen/common_margin_middle"
         android:layout_marginTop="@dimen/common_margin_small" />
 
+    <!--折扣-->
     <TextView
         style="@style/MatchWrap"
         android:background="@color/common_white"
@@ -53,5 +54,18 @@
         android:paddingBottom="@dimen/common_padding_small"
         android:paddingLeft="@dimen/common_padding"
         android:paddingRight="@dimen/common_padding" />
+    <!--画廊效果-->
+    <me.crosswall.lib.coverflow.core.PagerContainer
+        android:id="@+id/mTopicContainer"
+        style="@style/MatchMatch"
+        android:background="@drawable/home_container_bg">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/mTopicPager"
+            android:layout_width="200.0dip"
+            android:layout_height="160.0dip"
+            android:layout_gravity="center"
+            android:overScrollMode="never" />
+    </me.crosswall.lib.coverflow.core.PagerContainer>
 
 </LinearLayout>
