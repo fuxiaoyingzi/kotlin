@@ -60,8 +60,9 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
 
     override fun onLoginResult(result: UserInfo) {
         toast("登录成功")
-        startActivity<UserInfoActivity>()
         UserPrefsUtils.putUserInfo(result)
+        finish()
+        //startActivity<UserInfoActivity>()
     }
 
     override fun injectComponent() {

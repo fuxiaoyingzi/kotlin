@@ -4,7 +4,6 @@
 
     <application>
         <activity android:name=".ui.activity.BaseActivity" />
-        <activity android:name=".ui.activity.BaseMvpActivity"/>
     </application>
 
 </manifest>

@@ -3,6 +3,8 @@ package com.shadow.base.ext
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import com.kotlin.base.utils.GlideUtils
 import com.kotlin.base.widgets.DefaultTextWatcher
 import com.shadow.base.data.protocol.BaseResp
 import com.shadow.base.rx.BaseFunc
@@ -64,6 +66,11 @@ fun Button.enable(et: EditText, method: () -> Boolean) {
             btn.isEnabled = method()
         }
     })
+
+}
+
+fun ImageView.loadUrl(url:String){
+    GlideUtils.loadImage(context,url,this)
 }
 
 
